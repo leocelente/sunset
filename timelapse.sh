@@ -20,9 +20,11 @@ function take_photo() {
     mkdir -p "${current_date}";
   fi
 
-  echo "Taking photo to file '${filename}'";
-  sleep "${delay}";
-  touch "${filename}";
+  # echo "Taking photo to file '${filename}'";
+  # sleep "${delay}";
+  # touch "${filename}";
+  fswebcam -r ${resolution} -d ${device} --delay ${delay} ${filename}
+
 }
 
 pictures_in_2hours=$(( 7200 / $delta_time ));
