@@ -14,4 +14,4 @@ check_dependency "fswebcam"
 chmod +x timelapse.sh
 dir=`pwd`
 
-(crontab -l ; echo "@daily at `python3 ${dir}/sunset.py -1` -f ${dir}/timelapse.sh")| crontab -
+(crontab -l ; echo "@daily ${dir}/schedule.sh")| crontab -
