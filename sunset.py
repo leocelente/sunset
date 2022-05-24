@@ -29,6 +29,6 @@ if __name__ == "__main__":
 
         sunset = tz_corrected + timedelta(hours=offset)
     except:
-        sunset = datetime.strptime("18:00:00", "%H:%M:%S") + timedelta(hours=offset)
+        sunset = datetime.strptime("18:00:00", "%-H:%M") + timedelta(hours=offset)
 
-    print(sunset.strftime("%H:%M:%S"))
+    print(sunset.strftime("%-H:%M"))
