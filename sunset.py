@@ -11,7 +11,7 @@ HOST = "api.sunrise-sunset.org"
 offset = 0
 
 if __name__ == "__main__":
-    if sys.argv[1]:
+    if len(sys.argv) > 1 and sys.argv[1]:
         offset = int(sys.argv[1])
 
     try:
