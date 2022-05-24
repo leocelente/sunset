@@ -24,7 +24,7 @@ if __name__ == "__main__":
         decoded = decoder.decode(response)
         time_str = decoded["results"]["sunset"]
 
-        sunset_time = datetime.strptime(time_str, "%H:%M:%S %p")
+        sunset_time = datetime.strptime(time_str, "%I:%M:%S %p")
         tz_corrected = sunset_time + timedelta(hours=timezone)
 
         sunset = tz_corrected + timedelta(hours=offset)
