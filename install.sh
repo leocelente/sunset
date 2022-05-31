@@ -14,4 +14,4 @@ check_dependency "fswebcam"
 chmod +x timelapse.sh
 dir=`pwd`
 
-(crontab -l ; echo "@daily ${dir}/schedule.sh")| crontab -
+(crontab -l ; echo "@daily bash -l ${dir}/schedule.sh >> /tmp/timelapse.schedule.log") | crontab -

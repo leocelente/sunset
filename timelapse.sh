@@ -2,11 +2,9 @@
 # WebCam Parameters
 device=/dev/video2
 resolution=640x480
-delay=2
+delay=10
 
-delta_time=10
 # Time between pictures (considering camera "warm up" delay)
-sleep_time=$(($delta_time - ${delay}));
 
 
 # Function definitions
@@ -20,16 +18,14 @@ function take_photo() {
     mkdir -p "${current_date}";
   fi
 
-  # echo "Taking photo to file '${filename}'";
-  # sleep "${delay}";
-  # touch "${filename}";
   fswebcam -r ${resolution} -d ${device} --delay ${delay} ${filename}
 
 }
 
-pictures_in_2hours=$(( 7200 / $delta_time ));
+pictures_in_2hours=$(( 7200 / $delay));
 
 for i in $(seq 1 $pictures_in_2hours); do 
-  sleep 8 
   take_photo
 done
+
+ffmpeg -framerate 24 -pattern_type glob -i "${current_date}/*.jpg" -s:v 640x480 -c:v libx264 -crf 17 -pix_fmt yuv420p ${current_date}.mp4
